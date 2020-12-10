@@ -1,0 +1,20 @@
+name: Build and Test For Feature Branches
+
+on:
+  push:
+    branches:
+      - 'features/**'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v1
+      - uses: actions/setup-dotnet@v1
+        with:
+          dotnet-version: '3.1.100'
+      - name: Test with dotnet
+        env:
+          DOTNET_ENVIRONMENT: github
+        run: dotnet test --configuration Debug
+        shell: bash
