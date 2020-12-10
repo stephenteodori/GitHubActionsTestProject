@@ -1,8 +1,9 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using DoctorWhoAndWhen;
 using Xunit;
 
-namespace DoctorWhoAndWhenTests
+namespace DoctorWhoAndWhenTests.FindADoctorTests
 {
     public class DoctorByYearTests
     {
@@ -25,23 +26,21 @@ namespace DoctorWhoAndWhenTests
         public void GetDoctorByYear_ReturnsSingleEntryForSingleDoctorFound()
         {
             const int yearToCheck = 2007;
-            List<string> results = FindADoctor.Instance.GetDoctorsForYear(yearToCheck);
+            List<Doctor> results = FindADoctor.Instance.GetDoctorsForYear(yearToCheck).ToList();
             Assert.Single(results);
-            Assert.Contains(yearToCheck.ToString(), results[0]);
-            Assert.Matches(@"\w+ - \([0-9, ]+\)", results[0]);
+            Assert.Contains(yearToCheck, results[0].Years);
         }
 
         [Fact]
         public void GetDoctorByYear_ReturnsMultipleDoctorsIfMultipleAreFound()
         {
             const int yearToCheck = 2005;
-            List<string> results = FindADoctor.Instance.GetDoctorsForYear(yearToCheck);
+            List<Doctor> results = FindADoctor.Instance.GetDoctorsForYear(yearToCheck).ToList();
             Assert.True(results.Count > 1);
 
-            foreach (string result in results)
+            foreach (Doctor result in results)
             {
-                Assert.Contains(yearToCheck.ToString(), result);
-                Assert.Matches(@"\w+ - \([0-9, ]+\)", result);
+                Assert.Contains(yearToCheck, result.Years);
             }
         }
     }

@@ -1,7 +1,7 @@
-using DoctorWhoAndWhen;
 using Xunit;
+using DoctorWhoAndWhen;
 
-namespace DoctorWhoAndWhenTests
+namespace DoctorWhoAndWhenTests.FindADoctorTests
 {
     public class DoctorByNameTests
     {
@@ -36,17 +36,9 @@ namespace DoctorWhoAndWhenTests
         public void GetDoctorByName_GetsDoctorInformation()
         {
             const string nameToTry = "David Tennant";
-            string result = FindADoctor.Instance.GetDoctorByName(nameToTry);
+            Doctor result = FindADoctor.Instance.GetDoctorByName(nameToTry);
             Assert.NotNull(result);
-            Assert.Contains(nameToTry, result);
-        }
-
-        [Fact]
-        public void GetDoctorByName_ProvidesDoctorInfoInExpectedFormat()
-        {
-            const string nameToTry = "David Tennant";
-            string result = FindADoctor.Instance.GetDoctorByName(nameToTry);
-            Assert.Matches(@"\w+ - \([0-9, ]+\)", result);
+            Assert.Equal(nameToTry, result.ActorName);
         }
     }
 }

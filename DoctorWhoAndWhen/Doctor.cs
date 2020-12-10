@@ -2,7 +2,7 @@
 
 namespace DoctorWhoAndWhen
 {
-    internal class Doctor
+    public class Doctor
     {
         /// <summary>
         /// Get the actor's name who portrayed the doctor.
