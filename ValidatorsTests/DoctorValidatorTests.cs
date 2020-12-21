@@ -10,7 +10,7 @@ namespace ValidatorsTests
         [Fact]
         public void ValidName_ReturnsFalseFromNullInput()
         {
-            Assert.Tru(DoctorValidator.ValidName(null));
+            Assert.True(DoctorValidator.ValidName(null));
         }
 
         [Fact]
