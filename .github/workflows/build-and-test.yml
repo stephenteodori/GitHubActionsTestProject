@@ -1,4 +1,4 @@
-name: Build and Test For Feature Branches
+name: Run unit tests for feature branch
 
 on:
   push:
@@ -6,7 +6,7 @@ on:
       - 'features/**'
 
 jobs:
-  build:
+  feature_test:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v1
@@ -14,7 +14,5 @@ jobs:
         with:
           dotnet-version: '3.1.100'
       - name: Test with dotnet
-        env:
-          DOTNET_ENVIRONMENT: github
         run: dotnet test --configuration Debug
         shell: bash
