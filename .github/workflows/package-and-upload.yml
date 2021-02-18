@@ -1,6 +1,7 @@
 name: Package and upload
 
 on:
+  workflow_dispatch:
   push:
     branches:
       - 'master'
@@ -10,21 +11,23 @@ jobs:
     runs-on: ubuntu-latest
     env:
       TARGET_RUNTIME: rhel.7.2-x64
-      FOLDER_PATH: Lambda
+      LAMBDA_FOLDER: Lambda
       S3_BUCKET: stephen-teodori-doctor-who
+      CONFIG: Release
+      PACKAGE_FOLDER: Validators
+      PACKAGE_NAME_TEMPLATE: Validators.*.nupkg
     steps:
       - uses: actions/checkout@v1
       - uses: actions/setup-dotnet@v1
         with:
           dotnet-version: '3.1.100'
-      - name: Build with dotnet
-        run: dotnet build --configuration Release
-        shell: bash
       - name: Package Lambda
-        run: dotnet publish "./${FOLDER_PATH}/" -c Release -r $TARGET_RUNTIME --no-self-contained
+        run: dotnet publish "./${LAMBDA_FOLDER}/" -c ${CONFIG} -r $TARGET_RUNTIME --no-self-contained
         shell: bash
+      - name: Publish nuget package
+        run: find ./${PACKAGE_FOLDER}/bin/${CONFIG} -type f -name ${PACKAGE_NAME_TEMPLATE} -exec curl -vX PUT -u "[user]:${{ secrets.PACKAGE_TOKEN }}" -F package=@{} https://nuget.pkg.github.com/stephenteodori/
       - name: Zip lambda package
-        run: zip -j "${FOLDER_PATH}.zip" ./${FOLDER_PATH}/bin/Release/*/${TARGET_RUNTIME}/publish/*.*
+        run: zip -j "${LAMBDA_FOLDER}.zip" ./${LAMBDA_FOLDER}/bin/${CONFIG}/*/${TARGET_RUNTIME}/publish/*.*
         shell: bash
       - name: Configure AWS Credentials
         uses: aws-actions/configure-aws-credentials@v1
