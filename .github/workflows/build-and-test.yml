@@ -4,6 +4,7 @@ on:
   push:
     branches:
       - 'features/**'
+      - 'bugs/**'
 
 jobs:
   feature_test:
