@@ -40,5 +40,5 @@ jobs:
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws-region: us-east-1
       - name: Upload Lambda zip to S3 bucket
-        run: aws s3 cp "${LAMBDA_NAMESPACE}.zip" s3://${S3_BUCKET}/
+        run: aws s3 cp "${LAMBDA_FOLDER}.zip" s3://${S3_BUCKET}/
         shell: bash
