@@ -1,0 +1,37 @@
+name: Package and upload
+
+on:
+  push:
+    branches:
+      - 'master'
+
+jobs:
+  feature_test:
+    runs-on: ubuntu-latest
+    env:
+      TARGET_RUNTIME: rhel.7.2-x64
+      FOLDER_PATH: Lambda
+      S3_BUCKET: stephen-teodori-doctor-who
+    steps:
+      - uses: actions/checkout@v1
+      - uses: actions/setup-dotnet@v1
+        with:
+          dotnet-version: '3.1.100'
+      - name: Build with dotnet
+        run: dotnet build --configuration Release
+        shell: bash
+      - name: Package Lambda
+        run: dotnet publish "./${FOLDER_PATH}/" -c Release -r $TARGET_RUNTIME --no-self-contained
+        shell: bash
+      - name: Zip lambda package
+        run: zip -j "${FOLDER_PATH}.zip" ./${FOLDER_PATH}/bin/Release/*/${TARGET_RUNTIME}/publish/*.*
+        shell: bash
+      - name: Configure AWS Credentials
+        uses: aws-actions/configure-aws-credentials@v1
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: us-east-1
+      - name: Upload Lambda zip to S3 bucket
+        run: aws s3 cp "${LAMBDA_NAMESPACE}.zip" s3://${S3_BUCKET}/
+        shell: bash
