@@ -1,10 +1,10 @@
 name: Package and upload
 
 on:
+  workflow_dispatch:
   push:
     branches:
       - 'master'
-  workflow_dispatch:
 
 jobs:
   feature_test:
@@ -25,7 +25,7 @@ jobs:
         run: dotnet publish "./${LAMBDA_FOLDER}/" -c ${CONFIG} -r $TARGET_RUNTIME --no-self-contained
         shell: bash
       - name: Publish nuget package
-        run: find ./${PACKAGE_FOLDER}/bin/${CONFIG} -type f -name ${PACKAGE_NAME_TEMPLATE} -exec curl -vX PUT -u "[user]:${{ secrets.GITHUB_PACKAGE_TOKEN }}" -F package=@{} https://nuget.pkg.github.com/stephenteodori/
+        run: find ./${PACKAGE_FOLDER}/bin/${CONFIG} -type f -name ${PACKAGE_NAME_TEMPLATE} -exec curl -vX PUT -u "[user]:${{ secrets.PACKAGE_TOKEN }}" -F package=@{} https://nuget.pkg.github.com/stephenteodori/
       - name: Zip lambda package
         run: zip -j "${LAMBDA_FOLDER}.zip" ./${LAMBDA_FOLDER}/bin/${CONFIG}/*/${TARGET_RUNTIME}/publish/*.*
         shell: bash
