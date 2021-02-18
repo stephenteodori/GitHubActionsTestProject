@@ -9,7 +9,7 @@ jobs:
   feature_test:
     runs-on: ubuntu-latest
     env:
-      TARGET_RUNTIME: rhel.7.2-x64
+      TARGET_RUNTIME: linux-x64
       LAMBDA_FOLDER: Lambda
       S3_BUCKET: stephen-teodori-doctor-who
       CONFIG: Release
