@@ -3,17 +3,19 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.30717.126
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GithubActionsConsoleTool", "GithubActionsTestProject\GithubActionsConsoleTool.csproj", "{4A196AA2-B3EB-463D-BE52-324F47632B21}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Validators", "Validators\Validators.csproj", "{62FBC7A1-D695-43AE-99E8-835AD638943A}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ValidatorsTests", "ValidatorsTests\ValidatorsTests.csproj", "{17B28635-6D21-4478-9917-49F7A69D2881}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{50600000-CB54-4606-893E-E3B6E8695060}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DoctorWhoAndWhenTests", "DoctorWhoAndWhenTests\DoctorWhoAndWhenTests.csproj", "{C756BBFB-AA13-46E0-9AC6-ABA3C0751505}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DoctorWhoAndWhenTests", "DoctorWhoAndWhenTests\DoctorWhoAndWhenTests.csproj", "{C756BBFB-AA13-46E0-9AC6-ABA3C0751505}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DoctorWhoAndWhen", "DoctorWhoAndWhen\DoctorWhoAndWhen.csproj", "{C0EF8E2F-CD35-491E-AE53-C432415BE7A7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DoctorWhoAndWhen", "DoctorWhoAndWhen\DoctorWhoAndWhen.csproj", "{C0EF8E2F-CD35-491E-AE53-C432415BE7A7}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Lambda", "Lambda\Lambda.csproj", "{9F3B979B-9E62-48D6-AE75-0B3AE5AC1ABC}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LambdaTests", "LambdaTests\LambdaTests.csproj", "{E9062B34-35ED-43FB-89BB-44C666C38000}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,10 +23,6 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{4A196AA2-B3EB-463D-BE52-324F47632B21}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{4A196AA2-B3EB-463D-BE52-324F47632B21}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{4A196AA2-B3EB-463D-BE52-324F47632B21}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{4A196AA2-B3EB-463D-BE52-324F47632B21}.Release|Any CPU.Build.0 = Release|Any CPU
 		{62FBC7A1-D695-43AE-99E8-835AD638943A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{62FBC7A1-D695-43AE-99E8-835AD638943A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{62FBC7A1-D695-43AE-99E8-835AD638943A}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -41,6 +39,14 @@ Global
 		{C0EF8E2F-CD35-491E-AE53-C432415BE7A7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C0EF8E2F-CD35-491E-AE53-C432415BE7A7}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C0EF8E2F-CD35-491E-AE53-C432415BE7A7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9F3B979B-9E62-48D6-AE75-0B3AE5AC1ABC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9F3B979B-9E62-48D6-AE75-0B3AE5AC1ABC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9F3B979B-9E62-48D6-AE75-0B3AE5AC1ABC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9F3B979B-9E62-48D6-AE75-0B3AE5AC1ABC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E9062B34-35ED-43FB-89BB-44C666C38000}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E9062B34-35ED-43FB-89BB-44C666C38000}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E9062B34-35ED-43FB-89BB-44C666C38000}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E9062B34-35ED-43FB-89BB-44C666C38000}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -48,6 +54,7 @@ Global
 	GlobalSection(NestedProjects) = preSolution
 		{17B28635-6D21-4478-9917-49F7A69D2881} = {50600000-CB54-4606-893E-E3B6E8695060}
 		{C756BBFB-AA13-46E0-9AC6-ABA3C0751505} = {50600000-CB54-4606-893E-E3B6E8695060}
+		{E9062B34-35ED-43FB-89BB-44C666C38000} = {50600000-CB54-4606-893E-E3B6E8695060}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {FE57BF6E-C41D-4C74-BBB7-A0F868C6E3FE}
