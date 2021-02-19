@@ -23,12 +23,9 @@ jobs:
       - name: Package Lambda
         run: dotnet publish "./${LAMBDA_FOLDER}/" -c ${CONFIG} -r $TARGET_RUNTIME --no-self-contained
         shell: bash
-      - name: Publish nuget package
-        run: |
-          for f in ./${PACKAGE_FOLDER}/bin/${CONFIG}/${PACKAGE_NAME_TEMPLATE}
-          do
-            curl -vX PUT -u "[user]:${{ secrets.PACKAGE_TOKEN }}" -F package=@$f https://nuget.pkg.github.com/stephenteodori/
-          done
+      - name: Publish Nuget to GitHub registry
+        run: dotnet nuget push ./${PACKAGE_FOLDER}/bin/${CONFIG}/${PACKAGE_NAME_TEMPLATE} -k ${{ secrets.GITHUB_TOKEN }} -s https://nuget.pkg.github.com/stephenteodori/ --skip-duplicate --no-symbols
+        shell: bash
       - name: Zip lambda package
         run: zip -j "${LAMBDA_FOLDER}.zip" ./${LAMBDA_FOLDER}/bin/${CONFIG}/*/${TARGET_RUNTIME}/publish/*.*
         shell: bash
