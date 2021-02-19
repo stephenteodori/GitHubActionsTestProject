@@ -6,7 +6,7 @@ on:
       - 'master'
 
 jobs:
-  feature_test:
+  package_and_deploy:
     runs-on: ubuntu-latest
     env:
       TARGET_RUNTIME: rhel.7.2-x64
@@ -21,7 +21,7 @@ jobs:
         with:
           dotnet-version: '3.1.100'
       - name: Package Lambda
-        run: dotnet publish "./${LAMBDA_FOLDER}/" -c ${CONFIG} -r $TARGET_RUNTIME --no-self-contained
+        run: dotnet publish "./${LAMBDA_FOLDER}/" -c ${CONFIG} -r ${TARGET_RUNTIME} --no-self-contained
         shell: bash
       - name: Publish Nuget to GitHub registry
         run: dotnet nuget push ./${PACKAGE_FOLDER}/bin/${CONFIG}/${PACKAGE_NAME_TEMPLATE} -k ${{ secrets.GITHUB_TOKEN }} -s https://nuget.pkg.github.com/stephenteodori/ --skip-duplicate --no-symbols true
